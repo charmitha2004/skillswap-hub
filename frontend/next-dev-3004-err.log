@@ -1,0 +1,59 @@
+[TypeError: fetch failed] {
+  [cause]: AggregateError [EACCES]: 
+      at internalConnectMultiple (node:net:1142:49)
+      at afterConnectMultiple (node:net:1723:7) {
+    code: 'EACCES',
+    [errors]: [
+      [Error], [Error],
+      [Error], [Error],
+      [Error], [Error],
+      [Error], [Error],
+      [Error], [Error],
+      [Error], [Error],
+      [Error]
+    ]
+  }
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+Unable to load dynamic platform context error: password authentication failed for user "postgres"
+    at C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 1)
+    at async getPlatformData (webpack-internal:///(rsc)/./app/api/chat/route.ts:48:49)
+    at async POST (webpack-internal:///(rsc)/./app/api/chat/route.ts:148:30)
+    at async C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53446
+    at async e_.execute (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44747)
+    at async e_.handle (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54700)
+    at async doRender (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\donth\OneDrive\Desktop\skillswap-hub\frontend\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  length: 104,
+  severity: 'FATAL',
+  code: '28P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'auth.c',
+  line: '320',
+  routine: 'auth_failed'
+}

@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #14B8A6;
+  --primary-light: #2DD4BF;
+  --primary-dark: #0F766E;
+  --secondary: #8B5CF6;
+  --secondary-light: #A855F7;
+  --secondary-dark: #6D28D9;
+  --accent: #FF6B6B;
+  --background: #0B131F;
+  --background-light: #111827;
+  --surface: rgba(15, 23, 42, 0.72);
+  --muted: #94A3B8;
+  --foreground: #F8FAFC;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Poppins, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: rgba(15, 23, 42, 0.86);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient background */
+.animated-gradient {
+  background: linear-gradient(-45deg, #0B131F, #111827, #1E1B4B, #0F766E);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+nav .border-white\/10,
+nav .border-t,
+nav .border-b {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+nav .bg-white\/10,
+nav .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav .text-muted {
+  color: #CBD5E1;
+}
+
+nav .hover\:text-white:hover,
+nav .text-white {
+  color: #FFFFFF;
+}
+
+.workspace-light {
+  background-color: #F8FAFC;
+  color: #0F172A;
+  isolation: isolate;
+  position: relative;
+}
+
+.workspace-light::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/swapskill-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(760px, 78vw);
+  opacity: 0.1;
+}
+
+.workspace-light > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workspace-light > nav {
+  z-index: 50;
+}
+
+.workspace-light > section .bg-surface,
+.workspace-light > .bg-surface {
+  background-color: #FFFFFF;
+}
+
+.workspace-light > section .border-white\/10,
+.workspace-light > .border-white\/10 {
+  border-color: #E2E8F0;
+}
+
+.workspace-light > section .bg-white\/5,
+.workspace-light > section .bg-white\/10,
+.workspace-light > .bg-white\/5,
+.workspace-light > .bg-white\/10 {
+  background-color: #F8FAFC;
+}
+
+.workspace-light > section .text-white:not(article *):not(.bg-primary):not(.bg-secondary):not(.bg-accent):not(.bg-gradient-to-r),
+.workspace-light > .text-white:not(article *):not(.bg-primary):not(.bg-secondary):not(.bg-accent):not(.bg-gradient-to-r) {
+  color: #0F172A;
+}
+
+.workspace-light > section .text-muted {
+  color: #64748B;
+}
+
+.workspace-light .bg-surface .text-white:not(.bg-primary):not(.bg-secondary):not(.bg-accent):not(.bg-gradient-to-r),
+.workspace-light .bg-surface.text-white:not(.bg-primary):not(.bg-secondary):not(.bg-accent):not(.bg-gradient-to-r) {
+  color: #0F172A;
+}
+
+.workspace-light .bg-surface .text-muted,
+.workspace-light .bg-surface.text-muted {
+  color: #64748B;
+}
+
+.workspace-light .bg-surface button.bg-white\/10.text-white,
+.workspace-light .bg-surface button.bg-white\/5.text-white {
+  color: #0F172A;
+}
+
+.workspace-light > section input.text-white,
+.workspace-light > section textarea.text-white,
+.workspace-light > section select.text-white {
+  color: #0F172A;
+}
+
+.workspace-light > section input::placeholder,
+.workspace-light > section textarea::placeholder {
+  color: #64748B;
+}
+
+.workspace-light :is(article, .bg-surface) {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.workspace-light :is(article, .bg-surface):hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(20, 184, 166, 0.38);
+  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.14);
+}
+
+.workspace-light :is(a, button).bg-primary,
+.workspace-light :is(a, button).bg-primary\/10,
+.workspace-light :is(a, button).bg-primary\/15,
+.workspace-light :is(a, button).bg-slate-100,
+.workspace-light :is(a, button).bg-white\/5,
+.workspace-light :is(a, button).bg-white\/10,
+.workspace-light :is(button).bg-red-500\/10 {
+  border-color: rgba(20, 184, 166, 0.35) !important;
+  background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 42%, #8B5CF6 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 14px 28px rgba(20, 184, 166, 0.2);
+}
+
+.workspace-light :is(a, button).bg-primary:hover,
+.workspace-light :is(a, button).bg-primary\/10:hover,
+.workspace-light :is(a, button).bg-primary\/15:hover,
+.workspace-light :is(a, button).bg-slate-100:hover,
+.workspace-light :is(a, button).bg-white\/5:hover,
+.workspace-light :is(a, button).bg-white\/10:hover,
+.workspace-light :is(button).bg-red-500\/10:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 18px 34px rgba(139, 92, 246, 0.24);
+}
+
+.workspace-light :is(a, button).bg-primary *,
+.workspace-light :is(a, button).bg-primary\/10 *,
+.workspace-light :is(a, button).bg-primary\/15 *,
+.workspace-light :is(a, button).bg-slate-100 *,
+.workspace-light :is(a, button).bg-white\/5 *,
+.workspace-light :is(a, button).bg-white\/10 *,
+.workspace-light :is(button).bg-red-500\/10 * {
+  color: #FFFFFF !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-light :is(article, .bg-surface),
+  .workspace-light :is(article, .bg-surface):hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.signin-input:-webkit-autofill,
+.signin-input:-webkit-autofill:hover,
+.signin-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.94) inset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  caret-color: #FFFFFF;
+  transition: background-color 9999s ease-in-out 0s;
+}

@@ -1,0 +1,19 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/api/auth/signup/route": "app/api/auth/signup/route.js",
+  "/page": "app/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/signin/page": "app/signin/page.js",
+  "/discussions/page": "app/discussions/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/search/page": "app/search/page.js",
+  "/reports/page": "app/reports/page.js",
+  "/matches/page": "app/matches/page.js",
+  "/requests/page": "app/requests/page.js",
+  "/sessions/page": "app/sessions/page.js",
+  "/leaderboard/page": "app/leaderboard/page.js"
+}

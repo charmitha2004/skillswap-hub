@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               Int            @id @default(autoincrement())
+  name             String         @db.VarChar(120)
+  email            String         @unique @db.VarChar(255)
+  password         String
+  role             String         @map("department") @db.VarChar(120)
+  teachSkills      String[]       @map("teach_skills")
+  learnSkills      String[]       @map("learn_skills")
+  createdAt        DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  sentRequests     SwapRequest[] @relation("SwapRequestsSent")
+  receivedRequests SwapRequest[] @relation("SwapRequestsReceived")
+  discussionPosts  DiscussionPost[]
+  hostedSessions   Session[]      @relation("HostedSessions")
+  guestSessions    Session[]      @relation("GuestSessions")
+  sentMessages     Message[]      @relation("MessagesSent")
+  receivedMessages Message[]      @relation("MessagesReceived")
+
+  @@map("users")
+}
+
+model Skill {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique @db.VarChar(120)
+  category  String   @db.VarChar(120)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("skills")
+}
+
+model SwapRequest {
+  id          Int      @id @default(autoincrement())
+  status      String   @default("pending") @db.VarChar(24)
+  senderId    Int      @map("user_id")
+  receiverId  Int?     @map("receiver_id")
+  title       String   @db.VarChar(180)
+  description String   @default("")
+  skill       String   @default("") @db.VarChar(120)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  sender   User  @relation("SwapRequestsSent", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User? @relation("SwapRequestsReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+  sessions Session[]
+
+  @@map("requests")
+}
+
+model DiscussionPost {
+  id        Int      @id @default(autoincrement())
+  authorId  Int      @map("author_id")
+  title     String   @db.VarChar(180)
+  body      String   @default("")
+  skill     String   @default("") @db.VarChar(120)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("discussion_posts")
+}
+
+model Session {
+  id          Int      @id @default(autoincrement())
+  requestId   Int?     @map("request_id")
+  hostId      Int      @map("host_id")
+  guestId     Int      @map("guest_id")
+  skill       String   @default("") @db.VarChar(120)
+  date        DateTime? @db.Date
+  time        String?   @db.VarChar(16)
+  scheduledAt DateTime @default(now()) @map("scheduled_at") @db.Timestamptz(6)
+  status      String   @default("scheduled") @db.VarChar(24)
+  meetingLink String   @default("") @map("meeting_url")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  request SwapRequest? @relation(fields: [requestId], references: [id], onDelete: SetNull)
+  host    User         @relation("HostedSessions", fields: [hostId], references: [id], onDelete: Cascade)
+  guest   User         @relation("GuestSessions", fields: [guestId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  senderId   Int      @map("sender_id")
+  receiverId Int      @map("receiver_id")
+  content    String
+  timestamp  DateTime @default(now()) @db.Timestamptz(6)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  sender   User @relation("MessagesSent", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("MessagesReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@index([senderId, receiverId, timestamp])
+  @@index([receiverId, senderId, timestamp])
+  @@map("messages")
+}
