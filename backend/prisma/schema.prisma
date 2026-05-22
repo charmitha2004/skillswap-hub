@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               Int           @id @default(autoincrement())
+  name             String        @db.VarChar(120)
+  email            String        @unique @db.VarChar(255)
+  password         String
+  role             String        @map("department") @db.VarChar(120)
+  teachSkills      String[]      @map("teach_skills")
+  learnSkills      String[]      @map("learn_skills")
+  createdAt        DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  sentRequests     SwapRequest[] @relation("SwapRequestsSent")
+  receivedRequests SwapRequest[] @relation("SwapRequestsReceived")
+
+  @@map("users")
+}
+
+model Skill {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique @db.VarChar(120)
+  category  String   @db.VarChar(120)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("skills")
+}
+
+model SwapRequest {
+  id          Int      @id @default(autoincrement())
+  status      String   @default("pending") @db.VarChar(24)
+  senderId    Int      @map("user_id")
+  receiverId  Int?     @map("receiver_id")
+  title       String   @db.VarChar(180)
+  description String   @default("")
+  skill       String   @default("") @db.VarChar(120)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  sender   User  @relation("SwapRequestsSent", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User? @relation("SwapRequestsReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@map("requests")
+}
